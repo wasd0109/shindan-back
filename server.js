@@ -18,18 +18,22 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/questions", (req, res) => {
   db.select("*")
     .from("questions")
-    .then((data) => res.json(data));
+    .then((data) => res.json(data))
+    .catch((err) => console.log(err));
 });
 
 app.get("/scores", (req, res) => {
   db("scoring")
     .avg("score")
-    .then((data) => res.json(data));
+    .then((data) => res.json(data))
+    .catch((err) => console.log(err));
 });
 
 app.post("/scores", (req, res) => {
   const { score, date } = req.body;
-  db.insert({ score: score, date: date }).into("scoring").catch(console.log);
+  db.insert({ score: score, date: date })
+    .into("scoring")
+    .catch((err) => console.log(err));
   res.send("Success");
 });
 
