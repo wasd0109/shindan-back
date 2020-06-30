@@ -1,7 +1,6 @@
 const express = require("express");
 const knex = require("knex");
 const cors = require("cors");
-require("dotenv").config();
 
 const app = express();
 const db = knex({
