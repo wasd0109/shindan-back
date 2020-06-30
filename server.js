@@ -18,6 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/questions", (req, res) => {
   db.select("*")
     .from("questions")
+    .orderBy("id")
     .then((data) => res.json(data))
     .catch((err) => console.log(err));
 });
